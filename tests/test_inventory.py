@@ -1,0 +1,11 @@
+from playwright.sync_api import expect
+def test_verify_inventory_page(login_fixture):
+    page=login_fixture
+    expect(page).to_have_url('https://www.saucedemo.com/inventory.html')
+    # assert page.url == 'https://www.saucedemo.com/inventory.html'
+    expect(page.locator('.app_logo')).to_have_text('Swag Labs')
+    expect(page.locator('.inventory_list')).to_be_visible()
+
+def test_verify_product_count(login_fixture):
+    page=login_fixture
+    expect(page.locator('.inventory_item')).to_have_count(6)

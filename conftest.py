@@ -1,4 +1,8 @@
-import pytest
+import pytest, json
+from pageObjects.login_page import LoginPage
+
+with open('test_data/credentials.json') as f:
+    test_data=json.load(f)
 
 def pytest_addoption(parser):
     parser.addoption(
@@ -20,3 +24,12 @@ def browser_instance(playwright, request):
 
 def user_credentials(request):
     return request.param
+
+@pytest.fixture(params=test_data["user_credentials"])
+def login_fixture(request, browser_instance):
+    credentials = user_credentials(request)
+    username=credentials['username']
+    password=credentials['password']
+    login_page=LoginPage(browser_instance)
+    login_page.login_with_credentials(username,password)
+    return browser_instance
