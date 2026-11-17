@@ -1,4 +1,6 @@
 from playwright.sync_api import expect
+
+from pageObjects.inventory_page import InventoryPage
 def test_verify_inventory_page(login_fixture):
     page=login_fixture
     expect(page).to_have_url('https://www.saucedemo.com/inventory.html')
@@ -9,3 +11,10 @@ def test_verify_inventory_page(login_fixture):
 def test_verify_product_count(login_fixture):
     page=login_fixture
     expect(page.locator('.inventory_item')).to_have_count(6)
+
+def test_verify_product_details(login_fixture):
+    page=login_fixture
+
+    inventory_page=InventoryPage(page)
+
+    inventory_page.verify_product_details()
