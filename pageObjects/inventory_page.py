@@ -21,3 +21,15 @@ class InventoryPage:
             expect(item.locator(".inventory_item_name")).to_be_visible()
             expect(item.locator(".inventory_item_price")).not_to_be_empty()
             expect(item.locator(".btn_inventory")).to_be_visible()
+
+    def sort_products_name_in_ascending_order(self):
+        self.page.locator('.product_sort_container').select_option('az')
+        products_name=self.page.locator('.inventory_item_name').all_text_contents()
+        expected_names=sorted(products_name)
+        assert expected_names == products_name
+
+    def sort_product_names_in_descending_order(self):
+        self.page.locator('.product_sort_container').select_option('za')
+        product_names=self.page.locator('.inventory_item_name').all_text_contents()
+        expected_name=sorted(product_names, reverse=True)
+        assert product_names == expected_name

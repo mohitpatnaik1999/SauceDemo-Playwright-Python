@@ -14,7 +14,15 @@ def test_verify_product_count(login_fixture):
 
 def test_verify_product_details(login_fixture):
     page=login_fixture
-
     inventory_page=InventoryPage(page)
-
     inventory_page.verify_product_details()
+
+def test_verify_product_name_sorting_in_ascending(login_fixture):
+    page=login_fixture
+    inventory_page = InventoryPage(page)
+    inventory_page.sort_products_name_in_ascending_order()
+
+def test_verify_product_name_sorting_in_descending(login_fixture):
+    page=login_fixture
+    inventory_page=InventoryPage(page)
+    inventory_page.sort_product_names_in_descending_order()
