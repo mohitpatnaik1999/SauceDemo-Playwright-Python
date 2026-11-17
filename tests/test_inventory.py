@@ -12,17 +12,20 @@ def test_verify_product_count(login_fixture):
     page=login_fixture
     expect(page.locator('.inventory_item')).to_have_count(6)
 
-def test_verify_product_details(login_fixture):
-    page=login_fixture
-    inventory_page=InventoryPage(page)
-    inventory_page.verify_product_details()
+def test_verify_product_details(inventory_page_fixture):
+    inventory_page_fixture.verify_product_details()
 
-def test_verify_product_name_sorting_in_ascending(login_fixture):
-    page=login_fixture
-    inventory_page = InventoryPage(page)
-    inventory_page.sort_products_name_in_ascending_order()
+def test_verify_product_sort_by_name_ascending(inventory_page_fixture):
+    inventory_page_fixture.sort_products_name_in_ascending_order()
 
-def test_verify_product_name_sorting_in_descending(login_fixture):
-    page=login_fixture
-    inventory_page=InventoryPage(page)
-    inventory_page.sort_product_names_in_descending_order()
+def test_verify_product_sort_by_name_descending(inventory_page_fixture):
+    inventory_page_fixture.sort_product_names_in_descending_order()
+
+def test_verify_product_sort_by_price_ascending(inventory_page_fixture):
+    inventory_page_fixture.sort_product_by_price_in_ascending()
+
+def test_verify_product_sort_by_price_descending(inventory_page_fixture):
+    inventory_page_fixture.sort_product_by_price_in_descending()
+
+def test_verify_product_detail_navigation(inventory_page_fixture):
+    inventory_page_fixture.verify_product_details_navigation()
