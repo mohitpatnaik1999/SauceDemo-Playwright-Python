@@ -1,5 +1,6 @@
 import pytest, json
 from pageObjects.login_page import LoginPage
+from pageObjects.inventory_page import InventoryPage
 
 with open('test_data/credentials.json') as f:
     test_data=json.load(f)
@@ -33,3 +34,8 @@ def login_fixture(request, browser_instance):
     login_page=LoginPage(browser_instance)
     login_page.login_with_credentials(username,password)
     return browser_instance
+
+@pytest.fixture
+def inventory_page_fixture(login_fixture):
+    inventory_page=InventoryPage(login_fixture)
+    return inventory_page
