@@ -29,3 +29,12 @@ def test_verify_product_sort_by_price_descending(inventory_page_fixture):
 
 def test_verify_product_detail_navigation(inventory_page_fixture):
     inventory_page_fixture.verify_product_details_navigation()
+
+def test_verify_add_multiple_products_to_cart(inventory_page_fixture):
+    inventory_page_fixture.add_multiple_products_to_cart()
+
+def test_verify_remove_product_from_inventory(inventory_page_fixture):
+    inventory_page_fixture.remove_product_from_inventory()
+
+def test_verify_verify_cart_badge_after_removal(inventory_page_fixture):
+    inventory_page_fixture.remove_product_from_inventory()

@@ -67,3 +67,30 @@ class InventoryPage:
         expect(self.page.locator('.inventory_details_price')).to_be_visible()
         expect(self.page.locator('.btn_inventory')).to_be_visible()
         expect(self.page.locator('.inventory_details_img_container img')).to_be_visible()
+
+    def add_multiple_products_to_cart(self):
+        self.page.locator("#add-to-cart-sauce-labs-backpack").click()
+        self.page.locator("#add-to-cart-sauce-labs-bike-light").click()
+        count=0
+        for item in self.inventory_page.all():
+            if item.get_by_role("button",name="remove").count() > 0:
+                count=count+1
+
+        items_in_cart=self.page.locator(".shopping_cart_badge").text_content()
+        print(items_in_cart)
+
+        assert items_in_cart == str(count)
+
+    def remove_product_from_inventory(self):
+        for item in self.inventory_page.all():
+            if item.get_by_role("button",name="remove").count() > 0:
+                item.get_by_role("button",name="remove").click()
+                expect(item.get_by_role("button",name="Add to cart")).to_have_text('Add to cart')
+
+    def verify_cart_badge_after_removal(self):
+        for item in self.inventory_page.all():
+            if item.get_by_role("button",name="remove").count() > 0:
+                item.get_by_role("button",name="remove").click()
+
+        expect(self.page.locator(".shopping_cart_badge")).to_have_count(0)
+        
