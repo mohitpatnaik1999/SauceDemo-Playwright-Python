@@ -1,6 +1,7 @@
 import pytest, json
 from pageObjects.login_page import LoginPage
 from pageObjects.inventory_page import InventoryPage
+from pageObjects.cart_page import CartPage
 
 with open('test_data/credentials.json') as f:
     test_data=json.load(f)
@@ -39,3 +40,10 @@ def login_fixture(request, browser_instance):
 def inventory_page_fixture(login_fixture):
     inventory_page=InventoryPage(login_fixture)
     return inventory_page
+
+@pytest.fixture
+def cart_page_fixture(inventory_page_fixture):
+    cart_page=CartPage(inventory_page_fixture)
+    cart_page.inventory_page.add_multiple_products_to_cart()
+    cart_page.navigate_to_cart()
+    return cart_page

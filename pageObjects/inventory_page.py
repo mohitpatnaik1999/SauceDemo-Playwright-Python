@@ -14,6 +14,11 @@ class InventoryPage:
         cart_page=CartPage(self.page)
         return cart_page
 
+    def add_multiple_products_to_cart(self):
+        self.page.locator("#add-to-cart-sauce-labs-backpack").click()
+        self.page.locator("#add-to-cart-sauce-labs-bike-light").click()
+        self.page.locator(".shopping_cart_link").click()
+
     def verify_product_details(self):
         for item in self.inventory_page.all():
             expect(item.locator('.inventory_item_img img')).to_be_visible()
