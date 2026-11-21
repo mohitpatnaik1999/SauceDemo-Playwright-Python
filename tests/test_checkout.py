@@ -14,4 +14,7 @@ def test_verify_validation_when_mandatory_fields_are_blank(checkout_page_fixture
 
 @pytest.mark.parametrize('checkout_credentials',checkout_credentials)
 def test_verify_complete_checkout_info(checkout_page_fixture, checkout_credentials):
-    checkout_page_fixture.complete_checkout_info(checkout_credentials)
+    first_name=checkout_credentials['first_name']
+    last_name=checkout_credentials['last_name']
+    postal_code=checkout_credentials['postal_code']
+    checkout_page_fixture.complete_checkout_info(first_name, last_name, postal_code)

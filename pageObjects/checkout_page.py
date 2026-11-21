@@ -18,8 +18,8 @@ class CheckOutPage:
         self.page.locator('#continue').click()
         expect(self.page.locator('h3')).to_have_text('Error: First Name is required')
 
-    def complete_checkout_info(self,checkout_credentials):
-        self.page.get_by_placeholder('First Name').fill(checkout_credentials['first_name'])
-        self.page.get_by_placeholder('Last Name').fill(checkout_credentials['last_name'])
-        self.page.get_by_placeholder('Zip/Postal Code').fill(checkout_credentials['postal_code'])
+    def complete_checkout_info(self,first_name,last_name,postal_code):
+        self.page.get_by_placeholder('First Name').fill(first_name)
+        self.page.get_by_placeholder('Last Name').fill(last_name)
+        self.page.get_by_placeholder('Zip/Postal Code').fill(postal_code)
         self.page.locator("#continue").click()
