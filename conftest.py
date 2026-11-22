@@ -1,4 +1,5 @@
 import pytest, json
+from pageObjects.checkout_overview_page import CheckoutOverviewPage
 from pageObjects.login_page import LoginPage
 from pageObjects.inventory_page import InventoryPage
 from pageObjects.cart_page import CartPage
@@ -57,3 +58,13 @@ def checkout_page_fixture(cart_page_fixture):
 
 def checkout_credentials(request):
     return request.param
+
+@pytest.fixture(params=test_data["checkout_creds"])
+def checkout_overview_page_fixture(checkout_page_fixture,request):
+    credentials=checkout_credentials(request)
+    first_name=credentials['first_name']
+    last_name=credentials['last_name']
+    postal_code=credentials['postal_code']
+    checkout_overview=CheckoutOverviewPage(checkout_page_fixture)
+    checkout_overview.checkout_page.complete_checkout_info(first_name,last_name,postal_code)
+    return checkout_overview
