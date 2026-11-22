@@ -1,6 +1,3 @@
-from playwright.sync_api import Playwright, expect
-from pageObjects.login_page import LoginPage
-
 def test_end_to_end_ecommerce_checkout(checkout_overview_page_fixture):
     checkout_overview_page_fixture.click_finish_and_navigate_to_order_confirmation()
     # browser=playwright.chromium.launch(headless=False)
