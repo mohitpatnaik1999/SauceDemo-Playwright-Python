@@ -1,4 +1,5 @@
 import pytest, json
+from pageObjects.checkout_complete_page import CheckoutCompletePage
 from pageObjects.checkout_overview_page import CheckoutOverviewPage
 from pageObjects.login_page import LoginPage
 from pageObjects.inventory_page import InventoryPage
@@ -68,3 +69,9 @@ def checkout_overview_page_fixture(checkout_page_fixture,request):
     checkout_overview=CheckoutOverviewPage(checkout_page_fixture)
     checkout_overview.checkout_page.complete_checkout_info(first_name,last_name,postal_code)
     return checkout_overview
+
+@pytest.fixture
+def checkout_confirmation_page_fixture(checkout_overview_page_fixture):
+    checkout_complete=CheckoutCompletePage(checkout_overview_page_fixture)
+    checkout_complete.checkout_overview_page.click_finish_and_navigate_to_order_confirmation()
+    return checkout_complete
