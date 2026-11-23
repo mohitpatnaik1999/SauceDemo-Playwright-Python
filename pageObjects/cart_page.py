@@ -8,13 +8,6 @@ class CartPage:
         self.page=inventory_page.page
         self.cart_item=self.page.locator('.cart_item')
 
-    def proceed_to_checkout(self):
-        expect(self.page.locator(".inventory_item_name").filter(has_text="Sauce Labs Backpack")).to_have_text("Sauce Labs Backpack")
-        expect(self.page.locator(".inventory_item_name").filter(has_text="Sauce Labs Bike Light")).to_have_text("Sauce Labs Bike Light")
-        self.page.get_by_role("button",name="Checkout").click()
-        checkout_page=CheckOutPage(self.page)
-        return checkout_page
-
     def navigate_to_cart(self):
         self.page.locator('.shopping_cart_link').click()
 

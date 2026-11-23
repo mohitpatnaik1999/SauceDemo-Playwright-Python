@@ -6,11 +6,6 @@ class CheckoutOverviewPage:
         self.checkout_page=checkout_page
         self.page=checkout_page.page
 
-    def finish_checkout(self):
-        self.page.get_by_role("button",name="Finish").click()
-        order_confirmation_page=CheckoutCompletePage(self.page)
-        return order_confirmation_page
-
     def verify_selected_products_appear_in_the_order(self,expected_products):
         actual_products = self.page.locator('.inventory_item_name').all_text_contents()
         assert sorted(actual_products) == sorted(expected_products)

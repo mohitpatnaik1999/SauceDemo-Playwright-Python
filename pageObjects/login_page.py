@@ -9,5 +9,3 @@ class LoginPage:
         self.page.get_by_placeholder("Username").fill(username)
         self.page.get_by_placeholder("Password").fill(password)
         self.page.locator("#login-button").click()
-        inventory_page=InventoryPage(self.page)
-        return inventory_page
